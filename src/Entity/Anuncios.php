@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,22 @@ class Anuncios
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $fecha_modificacion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\usuarios", inversedBy="anuncios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $usuario;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Fotos", mappedBy="anuncio")
+     */
+    private $fotos;
+
+    public function __construct()
+    {
+        $this->fotos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +120,49 @@ class Anuncios
     public function setFechaModificacion(?\DateTimeInterface $fecha_modificacion): self
     {
         $this->fecha_modificacion = $fecha_modificacion;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?usuarios
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?usuarios $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Fotos[]
+     */
+    public function getFotos(): Collection
+    {
+        return $this->fotos;
+    }
+
+    public function addFoto(Fotos $foto): self
+    {
+        if (!$this->fotos->contains($foto)) {
+            $this->fotos[] = $foto;
+            $foto->setAnuncio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFoto(Fotos $foto): self
+    {
+        if ($this->fotos->contains($foto)) {
+            $this->fotos->removeElement($foto);
+            // set the owning side to null (unless already changed)
+            if ($foto->getAnuncio() === $this) {
+                $foto->setAnuncio(null);
+            }
+        }
 
         return $this;
     }

@@ -26,6 +26,11 @@ class Fotos
      */
     private $principal;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\anuncios", inversedBy="fotos")
+     */
+    private $anuncio;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Fotos
     public function setPrincipal(bool $principal): self
     {
         $this->principal = $principal;
+
+        return $this;
+    }
+
+    public function getAnuncio(): ?anuncios
+    {
+        return $this->anuncio;
+    }
+
+    public function setAnuncio(?anuncios $anuncio): self
+    {
+        $this->anuncio = $anuncio;
 
         return $this;
     }

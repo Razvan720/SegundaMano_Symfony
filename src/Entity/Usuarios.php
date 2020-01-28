@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -57,6 +59,16 @@ class Usuarios implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $foto;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="usuario", orphanRemoval=true)
+     */
+    private $anuncios;
+
+    public function __construct()
+    {
+        $this->anuncios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -191,6 +203,37 @@ class Usuarios implements UserInterface
     public function setFoto(?string $foto): self
     {
         $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Anuncios[]
+     */
+    public function getAnuncios(): Collection
+    {
+        return $this->anuncios;
+    }
+
+    public function addAnuncio(Anuncios $anuncio): self
+    {
+        if (!$this->anuncios->contains($anuncio)) {
+            $this->anuncios[] = $anuncio;
+            $anuncio->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnuncio(Anuncios $anuncio): self
+    {
+        if ($this->anuncios->contains($anuncio)) {
+            $this->anuncios->removeElement($anuncio);
+            // set the owning side to null (unless already changed)
+            if ($anuncio->getUsuario() === $this) {
+                $anuncio->setUsuario(null);
+            }
+        }
 
         return $this;
     }
