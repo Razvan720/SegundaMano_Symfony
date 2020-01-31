@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block contenido %}
-    Estamos en anuncios
+    <div>
+
+        {% for anuncio in anuncios %}
+            <a href="{{ path("verAnuncio",{id:anuncio.id}) }}"> {{ anuncio.titulo }} </a>
+        {% endfor %}
+    </div>
 {% endblock %}

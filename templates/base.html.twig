@@ -8,9 +8,20 @@
         {% endblock %}
     </head>
     <body>
-        <header>SegundaMano</header>
+        <header>SegundaMano
+            {% if app.user %}
+                <div class="">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+                <div>
+                    <a href="{{  }}" ></a>
+                </div>
+                
+                
+            {% endif %}
+        </header>
         <div>
-            <a href="{{ path("login") }}">Login</a>
+            <a href="{{ path("app_login") }}">Login</a>
             <a href="{{ path("registrar") }}">Registro</a>
         </div>
         {% block contenido %}{% endblock %}

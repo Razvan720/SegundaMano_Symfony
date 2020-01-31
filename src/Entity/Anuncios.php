@@ -44,7 +44,7 @@ class Anuncios
     private $fecha_modificacion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\usuarios", inversedBy="anuncios")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="anuncios")
      * @ORM\JoinColumn(nullable=false)
      */
     private $usuario;
