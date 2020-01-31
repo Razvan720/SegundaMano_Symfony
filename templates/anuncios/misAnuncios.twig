@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block contenido %}
+    <h1>Mis anuncios</h1>
+    <div>
+        {% for anuncio in anuncios %}
+            {{ anuncio.titulo }}
+        {% endfor %}
+    </div>
+{% endblock %}

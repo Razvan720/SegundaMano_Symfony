@@ -14,10 +14,11 @@
                     You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
                 <div>
-                    <a href="{{  }}" ></a>
+                    <a href="{{ path("addAnuncio",{id: app.user.id}) }}" >Añadir Anuncio</a>
+                    <a href="{{ path("misAnuncios",{id: app.user.id}) }}" >Listado Anuncios</a>
+
                 </div>
-                
-                
+
             {% endif %}
         </header>
         <div>
