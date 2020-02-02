@@ -1,21 +1,105 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
-header{
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.todo {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 12fr;
+    grid-template-rows: 2fr 9fr;
+    grid-template-areas: "cabecera" "cuerpo";
+    background-image: url(../imagenes/fondo.jpg);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+
+/******* CABECERA ********/
+
+.cabecera {
+    grid-area: cabecera;
     font-size: 30px;
     text-align: center;
     padding: 20px;
     border: 1px solid black;
+    background-color: rgba(0, 146, 146, 0.8);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 3fr;
+    grid-template-areas: "logo . . menuusuario";
 }
 
-.cont-form{
+.logo {
+    grid-area: logo;
+    height: 100px;
+    width: 200px;
+}
+
+.cont-usuario {
+    grid-area: menuusuario;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.usuario-info {
+    border: 1px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.377);
+}
+
+
+/*.botones-logeado {}*/
+
+.btn-add {
+    background-color: #f4b136;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.btn-add:hover {
+    background-color: #cf972e;
+}
+
+.btn-listado {
+    background-color: #f15050;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.btn-listado:hover {
+    background-color: #b83b3b;
+}
+
+.usuario-nologin {}
+
+
+/******* FORMULARIOS ********/
+
+.cont-form {
     text-align: center;
     margin-top: 20px;
     background-color: #565656;
 }
 
-.texto_form{
+.texto_form {
     border: 1px solid black;
     border-radius: 10px;
     padding: 5px;
@@ -24,7 +108,8 @@ header{
     background-color: white;
     box-sizing: content-box;
 }
-.input_form{
+
+.input_form {
     padding: 5px;
     margin: 5px;
     font-size: 1.2em;
@@ -32,18 +117,18 @@ header{
     box-sizing: content-box;
 }
 
-.boton_form{
+.boton_form {
     border: 1px solid black;
     padding: 5px;
     margin: 5px;
     font-size: 1.2em;
     background-color: #555;
-    color:white;
+    color: white;
     box-sizing: content-box;
     width: 400px;
 }
 
-#registro_form label{
+#registro_form label {
     padding: 5px;
     margin: 5px;
     font-size: 1.2em;
@@ -51,7 +136,59 @@ header{
     float: left;
     width: 80px;
 }
-#registro_form{
+
+#registro_form {
     width: 600px;
     margin: auto;
+}
+
+
+/******* ANUNCIOS inicio ********/
+
+.todo-anuncios {
+    grid-area: cuerpo;
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    grid-template-areas: ". anuncios .";
+    padding-top: 2%;
+}
+
+.cont-general-anuncios {
+    border-radius: 10px;
+    grid-area: anuncios;
+    background-color: rgba(49, 49, 49, 0.486);
+}
+
+.cont-anuncio {
+    width: 25%;
+    height: 55%;
+    float: left;
+    border: 2px solid rgb(0, 136, 118);
+    border-radius: 10px;
+    margin: 2%;
+    background-color: rgba(224, 224, 224, 0.486);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.cont-anuncio:hover {
+    background-color: rgba(0, 207, 190, 0.486);
+}
+
+.an-foto {
+    padding: 20px;
+    float: left;
+    width: 300px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.an-titulo {
+    text-decoration: none;
+    padding: 10px;
+}
+
+.an-precio {
+    padding-bottom: 10px;
 }

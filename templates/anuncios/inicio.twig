@@ -1,9 +1,43 @@
 {% extends 'base.html.twig' %}
 {% block contenido %}
-    <div>
+	<div class="todo-anuncios">
 
-        {% for anuncio in anuncios %}
-            <a href="{{ path("verAnuncio",{id:anuncio.id}) }}"> {{ anuncio.titulo }} </a>
-        {% endfor %}
-    </div>
+		<div class="cont-general-anuncios">
+
+			{% for anuncio in anuncios %}
+				<div class="cont-anuncio">
+					<a class="link-anuncio" href="{{ path("verAnuncio",{id:anuncio.id}) }}">
+
+						<img class="an-foto" src="../imagenes/s8.jpg">
+
+						<div class="an-titulo">
+							{{ anuncio.titulo }}
+						</div>
+						<div class="an-precio">
+							{{ anuncio.precio }}
+							€
+						</div>
+					</a>
+				</div>
+				<div class="cont-anuncio">
+					<a class="link-anuncio" href="{{ path("verAnuncio",{id:anuncio.id}) }}">
+
+						<img class="an-foto" src="../imagenes/logo.png">
+
+						<div class="an-titulo">
+							{{ anuncio.titulo }}
+						</div>
+						<div class="an-precio">
+							{{ anuncio.precio }}
+							€
+						</div>
+					</a>
+				</div>
+
+
+			{% endfor %}
+
+		</div>
+
+	</div>
 {% endblock %}
