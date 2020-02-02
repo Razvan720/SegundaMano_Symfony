@@ -41,7 +41,7 @@ a {
 .logo {
     grid-area: logo;
     height: 100px;
-    width: 200px;
+    width: 400px;
 }
 
 .cont-usuario {
