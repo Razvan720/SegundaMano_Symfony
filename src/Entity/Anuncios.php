@@ -50,7 +50,7 @@ class Anuncios
     private $usuario;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Fotos", mappedBy="anuncio")
+     * @ORM\OneToMany(targetEntity="App\Entity\Fotos", mappedBy="anuncio", cascade={"persist"})
      */
     private $fotos;
 
