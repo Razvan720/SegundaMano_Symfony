@@ -8,8 +8,11 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 use \App\Entity\Anuncios;
 use \App\Entity\Fotos;
 
@@ -18,14 +21,12 @@ use \App\Entity\Fotos;
  *
  * @author DAW209
  */
-class AnunciosController extends AbstractController
-{
+class AnunciosController extends AbstractController {
 
     /**
      * @Route("/", name="inicio")
      */
-    public function inicio()
-    {
+    public function inicio() {
         $anuncios_inicio = $this->getDoctrine()->getRepository(Anuncios::class)->findAll(['fecha_creacion' => 'DESC']);
         return $this->render('anuncios/inicio.twig', ['anuncios' => $anuncios_inicio]);
     }
@@ -33,34 +34,31 @@ class AnunciosController extends AbstractController
     /**
      * @Route("/anuncios/{id}", name="verAnuncio", requirements={"id"="\d+"})
      */
-    public function verAnuncio(Anuncios $anuncio)
-    {
+    public function verAnuncio(Anuncios $anuncio) {
         return $this->render('anuncios/verAnuncio.twig', ['anuncio' => $anuncio]);
     }
 
     /**
      * @Route("/misanuncios/{id}", name="misAnuncios", requirements={"id"="\d+"})
      */
-    public function misAnuncios(Usuarios $usuario)
-    {
+    public function misAnuncios(Usuarios $usuario) {
 
-        $misAnuncios = $this->getDoctrine()->getRepository(Anuncios::class)->findAll(['usuario_id' => $usuario->getId()]);
+        $misAnuncios = $this->getDoctrine()->getRepository(Anuncios::class)->findBy(['usuario' => $usuario->getId()]);
         return $this->render('anuncios/misAnuncios.twig', ['anuncios' => $misAnuncios]);
     }
 
     /**
      * @Route("/add", name="addAnuncio")
      */
-    public function addAnuncio(Request $request)
-    {
+    public function addAnuncio(Request $request) {
         $anuncio = new Anuncios();
         $form = $this->createFormBuilder($anuncio, ['attr' => ['id' => 'insertar_anuncio_form']])
-            ->add('titulo', TextType::class, ['attr' => ['class' => 'texto_form']])
-            ->add('descripcion', TextType::class, ['attr' => ['class' => 'texto_form']])
-            ->add('precio', MoneyType::class, ['attr' => ['class' => 'texto_form']])
-            ->add('foto', FileType::class, ['attr' => ['class' => 'input_form'], 'mapped' => false, 'required' => false])
-            ->add('Insertar', SubmitType::class, ['attr' => ['class' => 'boton_form']])
-            ->getForm();
+                ->add('titulo', TextType::class, ['attr' => ['class' => 'texto_form']])
+                ->add('descripcion', TextType::class, ['attr' => ['class' => 'texto_form']])
+                ->add('precio', MoneyType::class, ['attr' => ['class' => 'texto_form']])
+                ->add('foto', FileType::class, ['attr' => ['class' => 'input_form'], 'mapped' => false, 'required' => false])
+                ->add('Insertar', SubmitType::class, ['attr' => ['class' => 'boton_form']])
+                ->getForm();
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,6 +89,20 @@ class AnunciosController extends AbstractController
             return $this->redirectToRoute('inicio');
         }
         return $this->render('anuncios/insertar.twig', ['formulario_add' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/misanuncios/delete/{id}", name="deleteAnuncio")
+     * 
+     */
+    public function deleteAnuncio(Request $request, Anuncios $anuncio): Response {
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($anuncio);
+        $entityManager->flush();
+        $this->addFlash('mensaje', 'Anuncio borrado');
+
+        return $this->redirectToRoute('inicio');
     }
 
 }

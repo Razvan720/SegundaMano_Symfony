@@ -1,9 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} 
 {% block contenido %}
-    <h1>Mis anuncios</h1>
-    <div>
-        {% for anuncio in anuncios %}
-            {{ anuncio.titulo }}
+    <div class="todo-anuncios">
+        {% for flash_message in app.session.flashbag.get('mensaje') %}
+            <div class="flash">
+                {{ flash_message }}
+            </div>
         {% endfor %}
+
+        <div class="cont-general-misanuncios">
+            {% if anuncios is empty %}
+                <div class=""> no hay anuncios</div>
+            {% else %}   
+
+                {% for anuncio in anuncios %}
+                    <div class="cont-mianuncio">
+
+                        {% if anuncio.fotos[0] is defined %}
+                            <img class="an-fotomianucio" src="../imagenes/anuncios/{{anuncio.fotos[0].getNombre()}}">
+                        {% else %}
+                            <img class="an-fotomianucio" src="../imagenes/sinfoto.png"> 
+                        {% endif %}
+                        <div class="an-titulo">
+                            {{ anuncio.titulo }}
+                        </div>
+                        <div class="an-precio">
+                            {{ anuncio.precio }} €
+                        </div>
+
+                        <a class="btn-listado" href="{{ path("deleteAnuncio",{id: anuncio.id }) }}">Borrar Anuncio</a> 
+                        <a class="btn-listado" href="{{ path("deleteAnuncio",{id: anuncio.id }) }}">Editar Anuncio</a> 
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
     </div>
 {% endblock %}
