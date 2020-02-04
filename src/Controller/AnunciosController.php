@@ -76,7 +76,7 @@ class AnunciosController extends AbstractController
                 //Generamos un nuevo nombre para la foto
                 $extensión = pathinfo($fotoform->getClientOriginalName(), PATHINFO_EXTENSION);
                 $nuevo_nombre_archivo = md5(time() + rand(0, 9999)) . "." . $extensión;
-                $fotoform->move("imagenes", "$nuevo_nombre_archivo");
+                $fotoform->move("imagenes/anuncios", "$nuevo_nombre_archivo");
 
                 $foto->setNombre($nuevo_nombre_archivo);
                 $foto->setPrincipal(false);
