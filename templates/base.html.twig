@@ -13,11 +13,13 @@
 	<body>
 		<div class="todo">
 			<div class="cabecera">
-				<img class="logo" src="../imagenes/logo.png">
+				<a href="{{path('inicio')}}">
+					<img class="logo" src="../imagenes/logo.png">
+				</a>
 				<div class="cont-usuario">
 					{% if app.user %}
 						<div class="usuario-info">
-							Hola, 
+							Hola,
 							{{ app.user.username }}
 							<a href="{{ path('app_logout') }}" class="btn-logout">Logout</a>
 						</div>

@@ -58,7 +58,7 @@ class AnunciosController extends AbstractController
             ->add('titulo', TextType::class, ['attr' => ['class' => 'texto_form']])
             ->add('descripcion', TextType::class, ['attr' => ['class' => 'texto_form']])
             ->add('precio', MoneyType::class, ['attr' => ['class' => 'texto_form']])
-            ->add('foto', FileType::class, ['attr' => ['class' => 'input_form'], 'mapped' => false])
+            ->add('foto', FileType::class, ['attr' => ['class' => 'input_form'], 'mapped' => false, 'required' => false])
             ->add('Insertar', SubmitType::class, ['attr' => ['class' => 'boton_form']])
             ->getForm();
 

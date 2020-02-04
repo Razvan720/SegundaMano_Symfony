@@ -15,7 +15,7 @@ a {
     display: grid;
     grid-template-columns: 12fr;
     grid-template-rows: 2fr 9fr;
-    grid-template-areas: "cabecera" "cuerpo";
+    grid-template-areas: "cabecera""cuerpo";
     background-image: url(../imagenes/fondo.jpg);
     background-size: 100% 100%;
     background-attachment: fixed;
@@ -29,19 +29,26 @@ a {
     font-size: 30px;
     text-align: center;
     padding: 20px;
-    border: 1px solid black;
-    background-color: rgba(0, 146, 146, 0.8);
     color: white;
     font-family: 'Open Sans', sans-serif;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 3fr;
     grid-template-areas: "logo . . menuusuario";
+    /*Degradado de color*/
+    background: rgba(73, 155, 234, 1);
+    background: -moz-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(43, 184, 144, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73, 155, 234, 1)), color-stop(100%, rgba(43, 184, 144, 1)));
+    background: -webkit-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(43, 184, 144, 1) 100%);
+    background: -o-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(43, 184, 144, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(73, 155, 234, 1) 0%, rgba(43, 184, 144, 1) 100%);
+    background: linear-gradient(to bottom, rgba(73, 155, 234, 1) 0%, rgba(43, 184, 144, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#499bea', endColorstr='#2bb890', GradientType=0);
 }
 
 .logo {
     grid-area: logo;
-    height: 100px;
-    width: 400px;
+    min-height: 100px;
+    width: 80%;
 }
 
 .cont-usuario {
