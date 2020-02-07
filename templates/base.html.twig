@@ -17,7 +17,7 @@
 					<img class="logo" src="../imagenes/logo.png">
 				</a>
 				<div class="cont-usuario">
-					{% if app.user %}
+					{% if app.user  %}
 						<div class="usuario-info">
 							Hola,
 							{{ app.user.username }}
@@ -28,10 +28,12 @@
 							<a class="btn-listado" href="{{ path("misAnuncios",{id: app.user.id}) }}">Mis Anuncios</a>
 
 						</div>
+					 {# {% elseif app.request.requestUri == '/login' %}
+						Nada #}
 					{% else %}
 						<div class="botones-nologin">
 							<a href="{{ path("app_login") }}">Login</a>
-							<a href="{{ path("registrar") }}">Registro</a>
+
 						</div>
 					{% endif %}
 				</div>
