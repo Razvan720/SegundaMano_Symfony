@@ -1,11 +1,14 @@
 /******* ANUNCIOS individual ********/
 
 .cont-ind-general {
-    width: 60%;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .cont-ind {
-    min-height: 500px;
+    margin: 0 auto;
+    min-height: 400px;
     width: 60%;
     background-color: #f15050;
 }
