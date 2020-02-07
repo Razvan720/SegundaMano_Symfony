@@ -1,30 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
+<link href="{{asset('css/login.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block title %}Log in! {% endblock %} {% block contenido %}
 
-{% block title %}Log in!
-{% endblock %}
 
-{% block contenido %}
-	<div class="cont-login-general">
-		<form class="form-login" method="post">
-			<div class="form-login-inputs">
-				<input type="email" value="{{ last_username }}" name="email" placeholder="Email" class="form-input" required autofocus>
+<div class="cont-login-general">
+    <form class="form-login" method="post">
+        <div class="form-login-inputs">
+            <input type="email" value="{{ last_username }}" name="email" placeholder="Email" class="form-input" required autofocus>
 
-				<input type="password" name="password" id="inputPassword" placeholder="Contraseña" class="form-input" required>
+            <input type="password" name="password" id="inputPassword" placeholder="Contraseña" class="form-input" required>
 
-				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-				<button class="btn-login" type="submit">
+            <button class="btn-login" type="submit">
 					Entrar
 				</button>
 
-				<a href="{{ path("registrar") }}" class="form-login-registro">Eres nuevo ? Registrate !</a>
+            <a href="{{ path('registrar') }}" class="form-login-registro">Eres nuevo ? Registrate !</a>
 
-			</div>
+        </div>
 
-		</form>
-	</div>
-	{% if error %}
-		<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	{% endif %}
-
-{% endblock %}
+    </form>
+</div>
+{% if error %}
+<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %} {% endblock %}

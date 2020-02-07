@@ -1,0 +1,11 @@
+/******* ANUNCIOS individual ********/
+
+.cont-ind-general {
+    width: 60%;
+}
+
+.cont-ind {
+    min-height: 500px;
+    width: 60%;
+    background-color: #f15050;
+}

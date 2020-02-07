@@ -1,0 +1,19 @@
+/******* ANUNCIOS personal ********/
+
+.cont-general-misanuncios {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    grid-area: anuncios;
+    background-color: rgba(49, 49, 49, 0.486);
+}
+
+.cont-mianuncio {
+    border: 4px solid black;
+    min-height: 30%;
+}
+
+.an-fotomianucio {
+    width: 20%;
+    max-height: 120px;
+}

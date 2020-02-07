@@ -1,8 +1,17 @@
-{% extends 'base.html.twig' %}
-{% block contenido %}
-    <div>
-        {{ anuncio.titulo }}
-        {{ anuncio.descripcion }}
-        {{ anuncio.precio }}
+{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
+<link href="{{asset('css/veranuncio.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+
+
+<div class="cont-ind-general">
+    <div class="cont-ind">
+        <div class="cont-ind-titulo">{{ anuncio.titulo }}</div>
+        <div class="cont-ind-descripcion">{{ anuncio.descripcion}}</div>
+
+        {% if anuncio.fotos[0] is defined %}
+        <img class="in-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}"> {% else %}
+        <img class="in-foto" src="{{ asset('imagenes/sinfoto.png') }}"> {% endif %}
+
+        <div class="cont-ind-precio">{{ anuncio.precio }} </div>
     </div>
+</div>
 {% endblock %}

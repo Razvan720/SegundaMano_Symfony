@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Bienvenido!
-			{% endblock %}
-		</title>
-		{% block stylesheets %}
-			<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
-		{% endblock %}
-	</head>
-	<body>
-		<div class="todo">
-			<div class="cabecera">
-				<a href="{{path('inicio')}}">
-					<img class="logo" src="../imagenes/logo.png">
-				</a>
-				<div class="cont-usuario">
-					{% if app.user  %}
-						<div class="usuario-info">
-							Hola,
-							{{ app.user.username }}
-							<a href="{{ path('app_logout') }}" class="btn-logout">Logout</a>
-						</div>
-						<div class="botones-logeado">
-							<a class="btn-add" href="{{ path("addAnuncio") }}">Añadir Anuncio</a>
-							<a class="btn-listado" href="{{ path("misAnuncios",{id: app.user.id}) }}">Mis Anuncios</a>
 
-						</div>
-					 {# {% elseif app.request.requestUri == '/login' %}
-						Nada #}
-					{% else %}
-						<div class="botones-nologin">
-							<a href="{{ path("app_login") }}">Login</a>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Bienvenido! {% endblock %}
+    </title>
+    {% block stylesheets %}
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css"> {% endblock %}
+</head>
 
-						</div>
-					{% endif %}
-				</div>
+<body>
+    <div class="todo">
+        <div class="cabecera">
+            <a href="{{path('inicio')}}">
+                <img class="logo" src="../imagenes/logo.png">
+            </a>
+            <div class="cont-usuario">
+                {% if app.user %}
+                <div class="usuario-info">
+                    Hola, {{ app.user.username }}
+                    <a href="{{ path('app_logout') }}" class="btn-logout">Logout</a>
+                </div>
+                <div class="botones-logeado">
+                    <a class="btn-add" href="{{ path('addAnuncio') }}">Añadir Anuncio</a>
+                    <a class="btn-listado" href="{{ path('misAnuncios',{id: app.user.id}) }}">Mis Anuncios</a>
 
-			</div>
+                </div>
+                {# {% elseif app.request.requestUri == '/login' %} Nada #} {% else %}
+                <div class="botones-nologin">
+                    <a href="{{ path('app_login') }}">Login</a>
+
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
 
 
-			{% block contenido %}{% endblock %}
-			{% block javascripts %}{% endblock %}
-		</div>
-	</body>
+        {% block contenido %}{% endblock %} {% block javascripts %}{% endblock %}
+    </div>
+</body>
+
 </html>

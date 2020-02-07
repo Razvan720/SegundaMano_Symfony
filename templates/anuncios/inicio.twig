@@ -1,19 +1,17 @@
-{% extends 'base.html.twig' %}
-{% block contenido %}
-	<div class="todo-anuncios">
+{% extends 'base.html.twig' %} {% block contenido %}
+<div class="todo-anuncios">
 
-		<div class="cont-general-anuncios">
+    <div class="cont-general-anuncios">
 
-			{% for anuncio in anuncios %}
-				<div class="cont-anuncio">
-					<a class="link-anuncio" href="{{ path('verAnuncio',{id:anuncio.id}) }}">
+        {% for anuncio in anuncios %}
+        <div class="cont-anuncio">
+            <a class="link-anuncio" href="{{ path('verAnuncio',{id:anuncio.id}) }}">
 						{% if anuncio.fotos[0] is defined  %}
-							<img class="an-foto" src="../imagenes/anuncios/{{anuncio.fotos[0].getNombre()}}">
+						<img class="an-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}">
 
 						{% else %}
-							<img class="an-foto" src="../imagenes/sinfoto.png">
+						<img class="an-foto" src="{{ asset('imagenes/sinfoto.png') }}">
 						{% endif %}
-
 
 						<div class="an-titulo">
 							{{ anuncio.titulo }}
@@ -23,11 +21,11 @@
 							€
 						</div>
 					</a>
-				</div>
+        </div>
 
-			{% endfor %}
+        {% endfor %}
 
-		</div>
+    </div>
 
-	</div>
+</div>
 {% endblock %}
