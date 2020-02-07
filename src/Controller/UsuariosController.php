@@ -76,7 +76,7 @@ class UsuariosController extends AbstractController {
             }
         }
 
-        return $this->render('usuarios/registro.twig', ['formulario_registro' => $form->createView()]);
+        return $this->render('security/registro.twig', ['formulario_registro' => $form->createView()]);
     }
 
 }

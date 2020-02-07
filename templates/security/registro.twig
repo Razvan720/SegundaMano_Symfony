@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
+<link href="{{asset('css/registro.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+<div class="cont-form">
+    {{ form(formulario_registro) }}
+</div>
+{% endblock %}

@@ -1,4 +1,7 @@
-{% extends 'base.html.twig' %} {% block contenido %}
+{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
+<link href="{{asset('css/anuncios.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+
+
 <div class="todo-anuncios">
 
     <div class="cont-general-anuncios">
