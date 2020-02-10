@@ -62,6 +62,8 @@ class UsuariosController extends AbstractController {
                 $nuevo_nombre_archivo = md5(time() + rand(0, 9999)) . "." . $extension;
                 $foto->move("imagenes", "$nuevo_nombre_archivo");
                 $usuario->setFoto($nuevo_nombre_archivo);
+            }else{
+                $usuario->setFoto('usuario_defecto.png');
             }
 
             if (!$this->getDoctrine()->getRepository(Usuarios::class)

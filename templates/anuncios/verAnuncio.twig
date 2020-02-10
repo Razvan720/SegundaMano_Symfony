@@ -27,24 +27,32 @@
 
 		<div class="cont-datos">
 			{% if app.user %}
-				<h2>Contacto</h2>
+				<div class="datos-titulo">Contacto</div>
 				{% if anuncio.usuario.foto is defined %}
 					<img class="datos-foto" src="{{ asset('imagenes/'~anuncio.usuario.foto) }}">
 				{% else %}
 					<img class="datos-foto" src="{{ asset('imagenes/usuario_defecto.png') }}">
 				{% endif %}
 
-				<div class="datos-nombre">
+				<div class="datos-usuario">
 					{{ anuncio.usuario.nombre}}
 					{{ anuncio.usuario.apellido}}
 				</div>
 
-				<div class="datos-telefono">
-					Tlf {{ anuncio.usuario.telefono}}
+				<div class="datos-usuario">
+					Tlf
+					{{ anuncio.usuario.telefono}}
+				</div>
+				<div class="datos-usuario">
+					Email
+					{{ anuncio.usuario.email}}
 				</div>
 
 			{% else %}
-				Debe iniciar sesion para ver los datos de contacto
+				<div class="datos-usuario">
+					Debe iniciar sesion para ver los datos de contacto
+				</div>
+
 			{% endif %}
 		</div>
 	</div>
