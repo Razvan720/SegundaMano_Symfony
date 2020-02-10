@@ -1,17 +1,42 @@
-{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
-<link href="{{asset('css/veranuncio.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{asset('css/veranuncio.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block contenido %}
 
 
-<div class="cont-ind-general">
-    <div class="cont-ind">
-        <div class="cont-ind-titulo">{{ anuncio.titulo }}</div>
-        <div class="cont-ind-descripcion">{{ anuncio.descripcion}}</div>
+	<div class="cont-ind-general">
+		<div class="cont-ind">
 
-        {% if anuncio.fotos[0] is defined %}
-        <img class="in-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}"> {% else %}
-        <img class="in-foto" src="{{ asset('imagenes/sinfoto.png') }}"> {% endif %}
+			<div class="cont-ind-titulo">{{ anuncio.titulo }}</div>
+			<div class="cont-ind-precio">{{ anuncio.precio }}€</div>
 
-        <div class="cont-ind-precio">{{ anuncio.precio }} </div>
-    </div>
-</div>
+
+			{% if anuncio.fotos[0] is defined %}
+				<img class="in-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}">
+			{% else %}
+				<img class="in-foto" src="{{ asset('imagenes/sinfoto.png') }}">
+			{% endif %}
+			<div class="cont-ind-descripcion">{{ anuncio.descripcion}}</div>
+
+		</div>
+		<div class="cont-datos">
+			{% if app.user %}
+				<h2>Contacto</h2>
+				{% if anuncio.usuario.foto is defined %}
+					<img class="datos-foto" src="{{ asset('imagenes/'~anuncio.usuario.foto) }}">
+				{% else %}
+					<img class="datos-foto" src="{{ asset('imagenes/usuario_defecto.png') }}">
+				{% endif %}
+ 
+				<div class="datos-nombre"> {{ anuncio.usuario.nombre}} {{ anuncio.usuario.apellido}} </div>
+				
+				<div class="datos-telefono"> {{ anuncio.usuario.telefono}} </div>
+				
+				{% else %}
+				Debe iniciar sesion para ver los datos de contacto
+			{% endif %}
+		</div>
+	</div>
 {% endblock %}
