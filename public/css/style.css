@@ -67,8 +67,9 @@ a {
 
 /*.botones-logeado {}*/
 
-.btn-add {
-    background-color: #f4b136;
+.btn-cabecera {
+    background-color: #00000021;
+    border: 2px solid white;
     color: white;
     padding: 10px 25px;
     text-align: center;
@@ -77,20 +78,15 @@ a {
     margin: 5px;
 }
 
-.btn-add:hover {
-    background-color: #cf972e;
+.btn-cabecera:hover {
+    background-color: #12acc0b4;
 }
 
-.btn-listado {
-    background-color: #f15050;
+.flash {
+    width: 100%;
+    font-size: 2em;
+    font-family: 'Open Sans', sans-serif;
     color: white;
-    padding: 10px 25px;
     text-align: center;
-    text-decoration: none;
-    border-radius: 10px;
-    margin: 5px;
-}
-
-.btn-listado:hover {
-    background-color: #b83b3b;
+    background-color: #00000073;
 }

@@ -1,9 +1,22 @@
 /******* FORMULARIOS ********/
 
-.cont-form {
+.cont-registro-general {
     text-align: center;
     margin-top: 20px;
-    background-color: #565656;
+    display: flex;
+    justify-content: center;
+}
+
+#insertar_anuncio_form {
+    width: 50%;
+    height: 50%;
+    min-height: 400px;
+    background-color: rgba(0, 150, 150, 0.733);
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .texto_form {
@@ -20,31 +33,27 @@
     padding: 5px;
     margin: 5px;
     font-size: 1.2em;
-    background-color: white;
     box-sizing: content-box;
 }
 
 .boton_form {
-    border: 1px solid black;
-    padding: 5px;
-    margin: 5px;
-    font-size: 1.2em;
-    background-color: #555;
-    color: white;
-    box-sizing: content-box;
-    width: 400px;
+    margin-top: 2%;
+    width: 50%;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 1.8em;
 }
 
-#registro_form label {
+.boton_form:hover {
+    background-color: rgb(253, 115, 51);
+    color: white;
+}
+
+#insertar_anuncio_form label {
     padding: 5px;
     margin: 5px;
     font-size: 1.2em;
     display: block;
     float: left;
     width: 80px;
-}
-
-#registro_form {
-    width: 600px;
-    margin: auto;
 }

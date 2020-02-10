@@ -1,35 +1,49 @@
-{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
-<link href="{{asset('css/misanuncios.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{asset('css/misanuncios.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block contenido %}
 
 
-<div class="todo-anuncios">
-    {% for flash_message in app.session.flashbag.get('mensaje') %}
-    <div class="flash">
-        {{ flash_message }}
-    </div>
-    {% endfor %}
+	<div class="todo-anuncios">
+		{% for flash_message in app.session.flashbag.get('mensaje') %}
+			<div class="flash">
+				{{ flash_message }}
+			</div>
+		{% endfor %}
 
-    <div class="cont-general-misanuncios">
-        {% if anuncios is empty %}
-        <div class=""> No hay anuncios</div>
-        {% else %} {% for anuncio in anuncios %}
-        <div class="cont-mianuncio">
+		<div class="cont-general-misanuncios">
+			{% if anuncios is empty %}
+				<div class="sinanuncios">
+					No hay anuncios
+				</div>
+			{% else %}
+				{% for anuncio in anuncios %}
+					<div class="cont-mianuncio">
 
-            {% if anuncio.fotos[0] is defined %}
-            <img class="an-fotomianucio" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre )}}" )> {% else %}
-            <img class="an-fotomianucio" src="{{ asset('imagenes/sinfoto.png') }}"> {% endif %}
-            <div class="an-titulo">
-                {{ anuncio.titulo }}
-            </div>
-            <div class="an-precio">
-                {{ anuncio.precio }} €
-            </div>
-
-            <a class="btn-listado" href="{{ path('deleteAnuncio',{id: anuncio.id }) }}">Borrar Anuncio</a>
-            <a class="btn-listado" href="{{ path('deleteAnuncio',{id: anuncio.id }) }}">Editar Anuncio</a>
-        </div>
-        {% endfor %} {% endif %}
-
-    </div>
-</div>
+						{% if anuncio.fotos[0] is defined %}
+							<img class="an-fotomianucio" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre )}}" )>
+						{% else %}
+							<img class="an-fotomianucio" src="{{ asset('imagenes/sinfoto.png') }}">
+						{% endif %}
+						<div class="datos-anuncio">
+							<div class="an-titulo">
+								Titulo :
+								{{ anuncio.titulo }}
+							</div>
+							<div class="an-precio">
+								Precio:
+								{{ anuncio.precio }}€
+							</div>
+						</div>
+						<div>
+							<a class="btn-eliminar" href="{{ path('deleteAnuncio',{id: anuncio.id }) }}">Borrar Anuncio</a>
+							<a class="btn-editar" href="{{ path('deleteAnuncio',{id: anuncio.id }) }}">Editar Anuncio</a>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
 {% endblock %}

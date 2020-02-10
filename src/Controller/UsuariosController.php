@@ -42,7 +42,7 @@ class UsuariosController extends AbstractController {
                     'attr' => ['class' => 'input_form'],
                     'required' => false
                 ])
-                ->add('Registrar', SubmitType::class, ['attr' => ['class' => 'boton_form']])
+                ->add('Registrarse', SubmitType::class, ['attr' => ['class' => 'boton_form']])
                 ->getForm();
 
         $form->handleRequest($request);

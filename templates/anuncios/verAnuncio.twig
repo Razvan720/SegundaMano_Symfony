@@ -18,9 +18,13 @@
 			{% else %}
 				<img class="in-foto" src="{{ asset('imagenes/sinfoto.png') }}">
 			{% endif %}
-			<div class="cont-ind-descripcion">{{ anuncio.descripcion}}</div>
+			<div class="cont-ind-descripcion">
+				<div class="detalles-titulo">Detalles</div>
+				<div class="detalles-contenido">{{ anuncio.descripcion}}</div>
+			</div>
 
 		</div>
+
 		<div class="cont-datos">
 			{% if app.user %}
 				<h2>Contacto</h2>
@@ -29,12 +33,17 @@
 				{% else %}
 					<img class="datos-foto" src="{{ asset('imagenes/usuario_defecto.png') }}">
 				{% endif %}
- 
-				<div class="datos-nombre"> {{ anuncio.usuario.nombre}} {{ anuncio.usuario.apellido}} </div>
-				
-				<div class="datos-telefono"> {{ anuncio.usuario.telefono}} </div>
-				
-				{% else %}
+
+				<div class="datos-nombre">
+					{{ anuncio.usuario.nombre}}
+					{{ anuncio.usuario.apellido}}
+				</div>
+
+				<div class="datos-telefono">
+					Tlf {{ anuncio.usuario.telefono}}
+				</div>
+
+			{% else %}
 				Debe iniciar sesion para ver los datos de contacto
 			{% endif %}
 		</div>

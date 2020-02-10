@@ -12,18 +12,19 @@
     border-radius: 10px;
     grid-area: anuncios;
     background-color: rgba(49, 49, 49, 0.486);
+    display: flex;
+    justify-content: space-around;
 }
 
 .cont-anuncio {
     width: 25%;
     height: 55%;
-    float: left;
     border: 2px solid rgb(0, 136, 118);
     border-radius: 10px;
-    margin: 2%;
+    margin-top: 2%;
     background-color: rgba(224, 224, 224, 0.486);
     font-family: 'Open Sans', sans-serif;
-    font-size: 25px;
+    font-size: 1.5em;
     text-align: center;
 }
 
@@ -32,10 +33,9 @@
 }
 
 .an-foto {
-    padding: 20px;
-    float: left;
-    width: 300px;
-    height: 320px;
+    margin-top: 5%;
+    width: 90%;
+    min-height: 300px;
     border-radius: 30px;
 }
 

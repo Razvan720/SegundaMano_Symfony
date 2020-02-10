@@ -7,11 +7,13 @@
     grid-template-columns: 1fr 4fr 0.5fr 1fr 1fr;
     grid-template-rows: 1fr 12fr;
     grid-template-areas: ". . . . ." ". anuncio . datos .";
+    font-family: 'Roboto', sans-serif;
 }
 
 .cont-ind {
     grid-area: anuncio;
     background-color: #33abafb4;
+    border-radius: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 5fr 1fr;
@@ -22,12 +24,16 @@
 
 .cont-ind-titulo {
     grid-area: titulo;
-    font-size: 2em;
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(198, 252, 252);
 }
 
 .cont-ind-precio {
     grid-area: precio;
     font-size: 3em;
+    font-weight: bold;
+    color: rgb(237, 250, 164);
 }
 
 .in-foto {
@@ -39,6 +45,10 @@
 
 .cont-ind-descripcion {
     grid-area: desc;
+}
+
+.detalles-titulo {
+    font-size: 2em;
 }
 
 .cont-datos {
@@ -63,4 +73,5 @@
 
 .datos-telefono {
     font-size: 2em;
+    color: white;
 }
