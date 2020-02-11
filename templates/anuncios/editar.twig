@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
+<link href="{{asset('css/insertaranuncio.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+<div class="cont-registro-general">
+
+    {{ form(formulario_edit) }}
+</div>
+
+<script>
+    CKEDITOR.replace('form[descripcion]');
+</script>
+
+{% endblock %}

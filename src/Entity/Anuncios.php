@@ -146,6 +146,7 @@ class Anuncios
 
     public function addFoto(Fotos $foto): self
     {
+        
         if (!$this->fotos->contains($foto)) {
             $this->fotos[] = $foto;
             $foto->setAnuncio($this);

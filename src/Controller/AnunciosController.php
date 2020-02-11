@@ -70,6 +70,7 @@ class AnunciosController extends AbstractController
 
             $anuncio = $form->getData();
             $anuncio->setUsuario($this->getUser());
+            $anuncio->setFechaCreacion(new \DateTime);
 
             //Guarda el archivo de la foto
             $foto = new Fotos();
@@ -85,7 +86,7 @@ class AnunciosController extends AbstractController
                 $foto->setPrincipal(false);
 
                 $anuncio->addFoto($foto);
-            }else{
+            } else {
                 $foto->setNombre('sinfoto.png');
                 $foto->setPrincipal(false);
                 $anuncio->addFoto($foto);
@@ -121,13 +122,52 @@ class AnunciosController extends AbstractController
      */
     public function editAnuncio(Request $request, Anuncios $anuncio): Response
     {
+        
+        $form = $this->createFormBuilder($anuncio, ['attr' => ['id' => 'insertar_anuncio_form']])
+            ->add('titulo', TextType::class, ['attr' => ['class' => 'texto_form']])
+            ->add('precio', MoneyType::class, ['attr' => ['class' => 'texto_form']])
+            ->add('foto', FileType::class, ['attr' => ['class' => 'input_form'], 'mapped' => false, 'required' => false])
+            ->add('descripcion', TextAreaType::class, ['attr' => ['class' => 'editor']])
+            ->add('Editar', SubmitType::class, ['attr' => ['class' => 'boton_form']])
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($anuncio);
-        $entityManager->flush();
-        $this->addFlash('mensaje', 'Anuncio borrado');
+            ->getForm();
 
-        return $this->redirectToRoute('inicio');
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $anuncio = $form->getData();
+            $anuncio->setUsuario($this->getUser());
+            $anuncio->setFechaCreacion(new \DateTime);
+
+            //Guarda el archivo de la foto
+            $foto = new Fotos();
+            $fotoform = $form->get('foto')->getData();
+
+            if ($fotoform) {
+                //Generamos un nuevo nombre para la foto
+                $extensión = pathinfo($fotoform->getClientOriginalName(), PATHINFO_EXTENSION);
+                $nuevo_nombre_archivo = md5(time() + rand(0, 9999)) . "." . $extensión;
+                $fotoform->move("imagenes/anuncios", "$nuevo_nombre_archivo");
+
+                $foto->setNombre($nuevo_nombre_archivo);
+                $foto->setPrincipal(false);
+                $anuncio->removeFoto($anuncio->getFotos()[0]);
+                $anuncio->addFoto($foto);
+            } else {
+                $foto->setNombre('sinfoto.png');
+                $foto->setPrincipal(false);
+                $anuncio->addFoto($foto);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($anuncio);
+            $entityManager->flush();
+            $this->addFlash('mensaje', 'Anuncio editado');
+
+            return $this->redirectToRoute('inicio');
+        }
+
+        return $this->render('anuncios/editar.twig', ['formulario_edit' => $form->createView()]);
     }
 
 }
