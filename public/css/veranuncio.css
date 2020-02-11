@@ -27,13 +27,18 @@
     font-size: 3em;
     font-weight: bold;
     color: rgb(215, 253, 253);
+    border-bottom: 5px solid #ffffffe0;
+    border-radius: 10px;
 }
 
 .cont-ind-precio {
     grid-area: precio;
+    background-color: rgba(3, 3, 3, 0.411);
+    border-radius: 10px;
+    padding: 5px;
     font-size: 3em;
     font-weight: bold;
-    color: rgb(237, 250, 164);
+    color: #ffd902e0;
 }
 
 .in-foto {
@@ -45,11 +50,21 @@
 
 .cont-ind-descripcion {
     grid-area: desc;
-    width: 100%;
+    width: 70%;
 }
 
 .detalles-titulo {
+    text-align: center;
+    color: rgb(215, 253, 253);
+    border-bottom: 7px solid #ffd902e0;
+    border-radius: 20px;
     font-size: 2em;
+}
+
+.detalles-contenido {
+    background-color: rgba(245, 245, 245, 0.479);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .cont-datos {
