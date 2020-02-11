@@ -1,55 +1,50 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Bienvenido!
-			{% endblock %}
-		</title>
-		{% block stylesheets %}
-			<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
-			<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-		{% endblock %}
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Bienvenido! {% endblock %}
+    </title>
+    {% block stylesheets %}
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    {% endblock %}
+</head>
 
-	<body>
-		<div class="todo">
-			<div class="cabecera">
-				<a href="{{path('inicio')}}">
-					<img class="logo" src="../imagenes/logo.png">
-				</a>
-				<div class="cont-usuario">
-					{% if app.user %}
-						<div class="usuario-info">
-							Hola,
-							{{ app.user.username }}
-							<a href="{{ path('app_logout') }}" class="btn-logout">Logout</a>
-						</div>
-						<div class="botones-logeado">
-							<a class="btn-cabecera" href="{{ path('addAnuncio') }}">Añadir Anuncio</a>
-							<a class="btn-cabecera" href="{{ path('misAnuncios',{id: app.user.id}) }}">Mis Anuncios</a>
+<body>
+    <div class="todo">
+        <div class="cabecera">
+            <a href="{{path('inicio')}}">
+                <img class="logo" src="../imagenes/logo.png">
+            </a>
+            <div class="cont-usuario">
+                {% if app.user %}
+                <div class="usuario-info">
+                    Hola, {{ app.user.username }}
+                    <a href="{{ path('app_logout') }}" class="btn-logout">Logout</a>
+                </div>
+                <div class="botones-logeado">
+                    <a class="btn-cabecera" href="{{ path('addAnuncio') }}">Añadir Anuncio</a>
+                    <a class="btn-cabecera" href="{{ path('misAnuncios',{id: app.user.id}) }}">Mis Anuncios</a>
 
-						</div>
-						{# {% elseif app.request.requestUri == '/login' %} Nada #}
-					{% else %}
-						<div class="botones-nologin">
-							<a href="{{ path('app_login') }}">Login</a>
+                </div>
+                {# {% elseif app.request.requestUri == '/login' %} Nada #} {% else %}
+                <div class="botones-nologin">
+                    <a href="{{ path('app_login') }}">Login</a>
 
-						</div>
-					{% endif %}
-				</div>
+                </div>
+                {% endif %}
+            </div>
 
-			</div>
-			{% for flash_message in app.session.flashbag.get('mensaje') %}
-				<div class="flash">
-					{{ flash_message }}
-				</div>
-			{% endfor %}
-
-			{% block contenido %}{% endblock %}
-			{% block javascripts %}{% endblock %}
-		</div>
-	</body>
+        </div>
+        {% for flash_message in app.session.flashbag.get('mensaje') %}
+        <div class="flash">
+            {{ flash_message }}
+        </div>
+        {% endfor %} {% block contenido %}{% endblock %} {% block javascripts %} {% endblock %}
+    </div>
+</body>
 
 </html>

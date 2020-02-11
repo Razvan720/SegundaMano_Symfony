@@ -9,21 +9,17 @@
         {% for anuncio in anuncios %}
         <div class="cont-anuncio">
             <a class="link-anuncio" href="{{ path('verAnuncio',{id:anuncio.id}) }}">
-						{% if anuncio.fotos[0] is defined  %}
-						<img class="an-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}">
 
-						{% else %}
-						<img class="an-foto" src="{{ asset('imagenes/sinfoto.png') }}">
-						{% endif %}
+                <img class="an-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}">
 
-						<div class="an-titulo">
-							{{ anuncio.titulo }}
-						</div>
-						<div class="an-precio">
-							{{ anuncio.precio }}
-							€
-						</div>
-					</a>
+
+                <div class="an-titulo">
+                    {{ anuncio.titulo }}
+                </div>
+                <div class="an-precio">
+                    {{ anuncio.precio }} €
+                </div>
+            </a>
         </div>
 
         {% endfor %}

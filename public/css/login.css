@@ -59,3 +59,12 @@
 .form-login-registro:hover {
     font-weight: bold;
 }
+
+.alerta-error {
+    width: 20%;
+    font-size: 1em;
+    background-color: rgba(158, 4, 4, 0.747);
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+}
