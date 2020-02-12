@@ -1,47 +1,61 @@
-{% extends 'base.html.twig' %} {% block stylesheets %} {{ parent() }}
-<link href="{{asset('css/veranuncio.css')}}" rel="stylesheet" type="text/css"> {% endblock %} {% block contenido %}
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{asset('css/veranuncio.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block contenido %}
 
 
-<div class="cont-ind-general">
-    <div class="cont-ind">
+	<div class="cont-ind-general">
+		<div class="cont-ind">
 
-        <div class="cont-ind-titulo">{{ anuncio.titulo }}</div>
-        <div class="cont-ind-precio">{{ anuncio.precio }}€</div>
+			<div class="cont-ind-titulo">{{ anuncio.titulo }}</div>
+			<div class="cont-ind-precio">{{ anuncio.precio }}€</div>
 
 
+			<img class="in-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}">
+			<div class="cont-ind-descripcion">
+				<div class="detalles-titulo">Detalles</div>
+				<div class="detalles-contenido">
+					{% if anuncio.descripcion == "" %}
+						No hay detalles
+					{% else %}
+						{{ anuncio.descripcion | raw}}
+					{% endif %}
+				</div>
+			</div>
 
-        <img class="in-foto" src="{{ asset('imagenes/anuncios/'~anuncio.fotos[0].nombre) }}">
-        <div class="cont-ind-descripcion">
-            <div class="detalles-titulo">Detalles</div>
-            <div class="detalles-contenido">{{ anuncio.descripcion | raw}}</div>
-        </div>
+		</div>
 
-    </div>
+		<div class="cont-datos">
+			{% if app.user %}
+				<div class="datos-titulo">Contacto</div>
+				{% if anuncio.usuario.foto is defined %}
+					<img class="datos-foto" src="{{ asset('imagenes/'~anuncio.usuario.foto) }}">
+				{% else %}
+					<img class="datos-foto" src="{{ asset('imagenes/usuario_defecto.png') }}">
+				{% endif %}
 
-    <div class="cont-datos">
-        {% if app.user %}
-        <div class="datos-titulo">Contacto</div>
-        {% if anuncio.usuario.foto is defined %}
-        <img class="datos-foto" src="{{ asset('imagenes/'~anuncio.usuario.foto) }}"> {% else %}
-        <img class="datos-foto" src="{{ asset('imagenes/usuario_defecto.png') }}"> {% endif %}
+				<div class="datos-usuario">
+					{{ anuncio.usuario.nombre}}
+					{{ anuncio.usuario.apellido}}
+				</div>
 
-        <div class="datos-usuario">
-            {{ anuncio.usuario.nombre}} {{ anuncio.usuario.apellido}}
-        </div>
+				<div class="datos-usuario">
+					Tlf
+					{{ anuncio.usuario.telefono}}
+				</div>
+				<div class="datos-usuario">
+					Email
+					{{ anuncio.usuario.email}}
+				</div>
 
-        <div class="datos-usuario">
-            Tlf {{ anuncio.usuario.telefono}}
-        </div>
-        <div class="datos-usuario">
-            Email {{ anuncio.usuario.email}}
-        </div>
+			{% else %}
+				<div class="datos-usuario">
+					Debe iniciar sesion para ver los datos de contacto
+				</div>
 
-        {% else %}
-        <div class="datos-usuario">
-            Debe iniciar sesion para ver los datos de contacto
-        </div>
-
-        {% endif %}
-    </div>
-</div>
+			{% endif %}
+		</div>
+	</div>
 {% endblock %}

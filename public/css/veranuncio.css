@@ -46,7 +46,7 @@
 
 .in-foto {
     grid-area: foto;
-    max-height: 500px;
+    max-height: 400px;
     width: 70%;
     border-radius: 1em;
 }
