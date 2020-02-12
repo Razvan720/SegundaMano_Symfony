@@ -19,7 +19,7 @@
     border-radius: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 3fr 1fr;
     grid-template-areas: "titulo precio" "foto foto" "desc desc";
     align-items: center;
     justify-items: center;
