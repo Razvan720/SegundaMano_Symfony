@@ -8,28 +8,36 @@
 .cont-general-misanuncios {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     font-family: 'Roboto', sans-serif;
+    overflow-y: scroll;
 }
 
 .cont-mianuncio {
+    height: 30%;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "foto datos botones";
     margin: 0 auto;
+    align-items: center;
+    /*****/
     border: 3px solid rgb(37, 148, 133);
     background-color: rgba(49, 49, 49, 0.486);
     border-radius: 5px;
-    min-height: 20%;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }
 
 .an-fotomianucio {
-    width: 20%;
-    max-height: 120px;
+    grid-area: foto;
+    height: 90%;
+    width: 90%;
     border-radius: 10px;
+    justify-self: center;
+}
+
+.cont-botones {
+    grid-area: botones;
+    display: flex;
+    flex-direction: column;
 }
 
 .datos-anuncio {

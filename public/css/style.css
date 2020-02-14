@@ -61,7 +61,6 @@ a {
 .usuario-info {
     border: 1px;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.377);
 }
 
 
@@ -89,4 +88,14 @@ a {
     color: white;
     text-align: center;
     background-color: #00000073;
+}
+
+.btn-logout {
+    background-color: rgba(238, 173, 53, 0.993);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.btn-logout:hover {
+    background-color: #12acc0b4;
 }

@@ -137,7 +137,7 @@ class AnunciosController extends AbstractController
 
             $anuncio = $form->getData();
             $anuncio->setUsuario($this->getUser());
-            $anuncio->setFechaCreacion(new \DateTime);
+            $anuncio->setFechaModificacion(new \DateTime);
 
             //Guarda el archivo de la foto
             $foto = new Fotos();
